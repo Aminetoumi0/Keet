@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 app.get(express.json())
 
+const Client = new MongoClient(uri)
 
 
 app.get('/', (req, res) => {
@@ -26,7 +27,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signup', async (req, res) => {
-    const Client = new MongoClient(uri)
     console.log("request.body", req.body)
     const { email, password } = req.body
 
@@ -66,7 +66,6 @@ app.post('/signup', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    const Client = new MongoClient(uri)
     const { email, password} = req.body
 
     try {
@@ -97,7 +96,6 @@ app.post('/login', async (req, res) => {
 
 
 app.put('/user', async ( req, res) => {
-    const Client = new MongoClient(uri)
     const formData = req.body.formData
     try {
         await Client.connect()
@@ -126,7 +124,6 @@ app.put('/user', async ( req, res) => {
 
 
 app.get('/user', async(req, res) => {
-    const Client = new MongoClient(uri)
     const user_id = req.query.user_id
 
 
@@ -137,7 +134,16 @@ app.get('/user', async(req, res) => {
         const query = { user_id: user_id }
 
         const user = await users.findOne(query)
-        res.send(user)
+        res.send({
+            name: user.name,
+            age: user.age,
+            show_sex: user.show_sex,
+            sex: user.sex,
+            sex_interest: user.sex_interest,
+            url: user.url,
+            likes: user.likes,
+            matches: user.matches
+        })
     } finally {
         await Client.close()
     }
@@ -155,7 +161,6 @@ app.get('/user', async(req, res) => {
 
 
 app.get('/users', async(req, res) => {
-    const Client = new MongoClient(uri)
 
     try{
         await Client.connect()
@@ -163,7 +168,9 @@ app.get('/users', async(req, res) => {
         const users = database.collection('users')
 
         const returnedusers = await users.find().toArray()
+        console.log("returned user",returnedusers);
         res.send(returnedusers)
+        
     } finally {
         await Client.close()
     }
