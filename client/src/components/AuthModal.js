@@ -10,9 +10,8 @@ const AuthModal = ({ setshowModal, IsSignUp }) => {
     const [error, setError] = useState(null)
     const [cookies, setCookie, removeCookie] = useCookies('user')
 
-    let navigate = useNavigate()
-
-    console.log(email, password, confirmPassword)
+    const navigate = useNavigate()
+  
 
     const handleClick = () => {
         setshowModal(false)
@@ -25,9 +24,8 @@ const AuthModal = ({ setshowModal, IsSignUp }) => {
                 setError('Passwords need to match')
                 return
             }
-            console.log('posting ', email, password)
             const response = await axios.post(`http://localhost:8000/${IsSignUp ? 'signup' : 'login'}`, { email, password })
-
+            
             setCookie('AuthToken', response.data.token)
             setCookie('user_id', response.data.user_id)
 
@@ -38,7 +36,7 @@ const AuthModal = ({ setshowModal, IsSignUp }) => {
             if (success && !IsSignUp) navigate('/Dashboard')
         }
         catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

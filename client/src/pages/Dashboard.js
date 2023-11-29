@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
   const [ cookies, setCookie, removeCookie] = useCookies('user')
 
 
@@ -17,9 +17,9 @@ const user_id = cookies.user_id
     try {
       const response = axios.get('http://localhost:8000/user', { params: {user_id}
     })
-    setUser(response.data)
+        setUser(response.data)  
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
