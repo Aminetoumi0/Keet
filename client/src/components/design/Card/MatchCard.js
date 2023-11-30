@@ -25,7 +25,7 @@ const ExpandMore = styled((props) => {
   })
 }))
 
-const MatchCard = ({}) => {
+const MatchCard = ({ onClick }) => {
   const [expanded, setExpanded] = useState(false)
   const onSwipe = (direction) => {
     console.log('You swiped: ' + direction)
@@ -40,7 +40,7 @@ const MatchCard = ({}) => {
       onSwipe={onSwipe}
       onCardLeftScreen={() => onCardLeftScreen('fooBar')}
       preventSwipe={['down', 'up']}>
-      <Card sx={{ maxWidth: 400, borderRadius: 6 }}>
+      <Card onClick={onClick} sx={{ maxWidth: 400, borderRadius: 6 }}>
         <CardActionArea>
           <CardMedia
             component="img"

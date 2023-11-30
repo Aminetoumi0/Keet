@@ -1,4 +1,4 @@
-import Keet_logo from '../images/Keet_logo.jpg'
+import Keet_logo from '../../images/Keet_logo.jpg'
 const Nav = ({ minimal, setshowModal, showModal, setIsSignUp }) => {
   const handleClick = () => {
     setshowModal(true)
