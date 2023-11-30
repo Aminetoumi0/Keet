@@ -1,15 +1,14 @@
-import Chat from "./Chat"
-import ChatInput from "./ChatInput"
+import Chat from './Chat'
+import ChatInput from './ChatInput'
 
 const ChatDisplay = () => {
-    return (
-        <>
-        <Chat/>
+  return (
+    <>
+      <Chat />
 
-        <ChatInput/>
-        </>
-        
-    )
+      <ChatInput />
+    </>
+  )
 }
 
 export default ChatDisplay

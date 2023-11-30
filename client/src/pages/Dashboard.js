@@ -1,23 +1,18 @@
-
-import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
-import Card from './Card';
-import ChatContainer from '../components/ChatContainer';
-import axios from 'axios';
-
-
+import { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
+import Card from './Card'
+import ChatContainer from '../components/ChatContainer'
+import axios from 'axios'
 
 const Dashboard = () => {
   const [user, setUser] = useState({})
-  const [ cookies, setCookie, removeCookie] = useCookies('user')
+  const [cookies] = useCookies('user')
 
-
-const user_id = cookies.user_id
+  const user_id = cookies.user_id
   const getUser = async () => {
     try {
-      const response = axios.get('http://localhost:8000/user', { params: {user_id}
-    })
-        setUser(response.data)  
+      const response = axios.get('http://localhost:8000/user', { params: { user_id } })
+      setUser(response.data)
     } catch (err) {
       console.error(err)
     }
@@ -27,33 +22,28 @@ const user_id = cookies.user_id
     getUser()
   }, [])
 
-
-
-
-
   const profiles = [
-    { id: 1, name: 'Mika', bio: 'Likes playing', image: 'LWbxZcb.jpeg' },
+    { id: 1, name: 'Mika', bio: 'Likes playing', image: 'LWbxZcb.jpeg' }
     // Add more profiles as needed
-  ];
-  const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
+  ]
+  const [currentProfileIndex, setCurrentProfileIndex] = useState(0)
 
   const handleLike = () => {
     // Handle the like action (e.g., update state, fetch next profile, etc.)
     // For simplicity, we'll just move to the next profile
-    setCurrentProfileIndex(currentProfileIndex + 1);
-  };
+    setCurrentProfileIndex(currentProfileIndex + 1)
+  }
 
   const handleDislike = () => {
     // Handle the dislike action (e.g., update state, fetch next profile, etc.)
     // For simplicity, we'll just move to the next profile
-    setCurrentProfileIndex(currentProfileIndex + 1);
-  };
+    setCurrentProfileIndex(currentProfileIndex + 1)
+  }
 
   return (
     <div className="dashboard">
-        <ChatContainer user={user}/>
+      <ChatContainer user={user} />
 
-      
       {currentProfileIndex < profiles.length ? (
         <Card profile={profiles[currentProfileIndex]} />
       ) : (
@@ -64,7 +54,7 @@ const user_id = cookies.user_id
         <button onClick={handleLike}>Like</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
