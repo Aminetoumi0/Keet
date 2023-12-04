@@ -20,20 +20,26 @@ Match with other cats if there's a mutual interest.
 Real-time messaging between matched cats.
 
 Folder Structure
+
 bash
-Copy code
-cat-tinder/
+Keet
+
 |-- backend/                  # Backend Node.js + Express application
 |-- frontend/                 # Frontend React application
 |-- README.md                 # Project documentation
 
 Backend
+
 The backend of Keet is built with Node.js and Express, and it uses MongoDB as the database.
 
 Frontend
+
 The frontend is built with React.
 
 Contributing
+
 I made this project with the guidance and help of peers and friends
-Authors
+
+Authors:
+
 Amine Toumi (Toumibusiness0@gmail.com)
