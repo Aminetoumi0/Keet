@@ -11,9 +11,11 @@ Contributing
 Authors
 
 Overview
+
 Keets is a full-stack web application built with React for the frontend and Node.js, Express, and MongoDB for the backend. It allows cats to create profiles, browse other cat profiles, and swipe right if they are interested in making a connection.
 
 Features
+
 Cat profile creation with images and bio
 Swipe right to express interest in another cat.
 Match with other cats if there's a mutual interest.
