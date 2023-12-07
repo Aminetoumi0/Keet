@@ -27,7 +27,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signup', async (req, res) => {
-    console.log("request.body", req.body)
     const { email, password } = req.body
 
     const generateduserID = uuidv4()
@@ -66,8 +65,7 @@ app.post('/signup', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    const client = new MongoClient(uri)
-    const {email, password} = req.body
+    const { email, password } = req.body
 
     try {
         await client.connect()
@@ -111,7 +109,6 @@ app.get('/gender', async (req, res) => {
         await client.close()
     }
 })
-
 
 
 
@@ -174,6 +171,63 @@ app.get('/user', async (req, res) => {
 
 
 
+app.post('/conversations', async (req, res) => {
+    const formData = req.body
+    console.log('form data', formData);
+    try {
+        await Client.connect()
+        const database = Client.db('app-data')
+        const conversations = database.collection('conversations')
+        //const id = formData.id || uuidv4()
+        
+        let conv = null
+        let doc = null
+        if (formData && formData.id) {
+            const query = { conv_id: formData.id }
+            conv = await conversations.findOne(query)
+            console.log('find conv', conv);
+            doc = {
+                $push: {
+                    messages: { message_id: uuidv4(), sender: formData.sender, receiver: formData.receiver, message: formData.message, timestamp: formData.timestamp }
+                }
+            }
+            conv = await conversations.updateOne(query, doc)
+        } else {
+            doc = {
+                    conv_id: uuidv4(),
+                    user_id_1: formData.sender,
+                    user_id_2: formData.receiver,
+                    started_at: formData.timestamp,
+                    deleted_at: null,
+                    messages: [{ message_id: uuidv4(), sender: formData.sender, receiver: formData.receiver, message: formData.message, timestamp: formData.timestamp }]
+
+            }
+            console.log('posting', doc);
+            conv = await conversations.insertOne(doc)
+        }
+        res.send(conv)
+    }
+    catch (err) { console.log(err);
+    }
+})
+
+app.get('/conversations', async (req, res) => {
+    const conv_id = req.body.conv_id
+    try {
+        await Client.connect()
+        const database = Client.db('app-data')
+        const conversations = database.collection('conversations')
+        const query = { conv_id: conv_id }
+        const foundconvs = await conversations.find(query).toArray()
+
+        res.send(foundconvs)
+}
+finally {
+    await Client.close()
+}
+})
+
+
 
 
 
@@ -186,6 +240,10 @@ app.get('/users', async (req, res) => {
         await Client.connect()
         const database = Client.db('app-data')
         const users = database.collection('users')
+        const query = { sex: { $eq: sex } }
+        const foundUsers = await users.find(query).toArray()
+
+        res.send(foundUsers)
 
         const returnedusers = await users.find().toArray()
         console.log("returned user", returnedusers);
@@ -196,6 +254,25 @@ app.get('/users', async (req, res) => {
     }
 })
 
+app.put('/addmatch', async (req, res) => {
+    const { user_id, matcheduserId } = req.body
+
+    try {
+        await Client.connect()
+        const database = Client.db('app-data')
+        const users = database.collection('users')
+
+        const query = { user_id: user_id }
+        const updateDocument = {
+            $push: { matches: { user_id: matcheduserId } },
+        }
+        const user = await users.updateOne(query, updateDocument)
+        res.send(user)
+    } finally {
+        await Client.close()
+    }
+
+})
 
 
 

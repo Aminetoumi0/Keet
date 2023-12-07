@@ -12,9 +12,9 @@ const Onboarding = () => {
     age: '',
     show_sex: false,
     sex: '',
-    interest: '',
+    sex_interest: '',
     url: '',
-    about: '',
+    likes: '',
     matches: []
   })
 
@@ -25,7 +25,7 @@ const Onboarding = () => {
       const response = await axios.put('http://localhost:8000/user', { formData })
       const success = response.status === 200
       console.log(response)
-      if (success) navigate('/Home')
+      if (success) navigate('/home')
     } catch (err) {
       console.log(err)
     }
@@ -103,8 +103,8 @@ const Onboarding = () => {
             <div className="multiple-input-container">
               <input
                 id="Male-ID-interest"
-                type="radio"
-                name="interest"
+                type='radio'
+                name='sex_interest'
                 value="Male"
                 onChange={handleChange}
                 checked={formData.sex_interest === 'Male'}
@@ -112,15 +112,15 @@ const Onboarding = () => {
               <label htmlFor="Male-ID-interest">Male</label>
               <input
                 id="Female-ID-interest"
-                type="radio"
-                name="interest"
+                type='radio'
+                name='sex_interest'
                 value="Female"
                 onChange={handleChange}
                 checked={formData.sex_interest === 'Female'}
               />
               <label htmlFor="Female-ID-interest">Female</label>
             </div>
-            <label htmlFor="about">About me</label>
+            <label htmlFor='likes'>About me</label>
             <input
               id="likes"
               type="text"
