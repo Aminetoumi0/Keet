@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Nav from '../components/Nav'
+import Nav from '../components/design/Nav'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -25,7 +25,7 @@ const Onboarding = () => {
       const response = await axios.put('http://localhost:8000/user', { formData })
       const success = response.status === 200
       console.log(response)
-      if (success) navigate('/Dashboard')
+      if (success) navigate('/home')
     } catch (err) {
       console.log(err)
     }
@@ -48,7 +48,7 @@ const Onboarding = () => {
 
         <form onSubmit={handleSubmit}>
           <section>
-            <label htmlFor="Name">Name</label>
+            <label htmlFor="name">Name</label>
             <input
               id="name"
               type="text"
@@ -122,11 +122,11 @@ const Onboarding = () => {
             </div>
             <label htmlFor='likes'>About me</label>
             <input
-              id='likes'
-              type='text'
-              name='likes'
+              id="likes"
+              type="text"
+              name="likes"
               required={true}
-              placeholder='i like to play'
+              placeholder="i like to play"
               value={formData.likes}
               onChange={handleChange}
             />

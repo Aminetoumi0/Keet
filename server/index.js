@@ -30,7 +30,7 @@ app.post('/signup', async (req, res) => {
     const { email, password } = req.body
 
     const generateduserID = uuidv4()
-    const hashed_password = await bcrypt.hash(password, 10)
+    const hashedPassword = await bcrypt.hash(password, 10)
 
     try {
         await Client.connect()
@@ -48,7 +48,7 @@ app.post('/signup', async (req, res) => {
         const data = {
             user_id: generateduserID,
             email: sanitizedEmail,
-            hashed_password: hashed_password
+            hashed_password: hashedPassword
         }
         const insertedUser = await users.insertOne(data)
 
@@ -68,11 +68,11 @@ app.post('/login', async (req, res) => {
     const { email, password } = req.body
 
     try {
-        await Client.connect()
-        const database = Client.db('app-data')
+        await client.connect()
+        const database = client.db('app-data')
         const users = database.collection('users')
 
-        const user = await users.findOne({ email })
+        const user = await users.findOne({email})
 
         const correctPassword = await bcrypt.compare(password, user.hashed_password)
 
@@ -80,17 +80,35 @@ app.post('/login', async (req, res) => {
             const token = jwt.sign(user, email, {
                 expiresIn: 60 * 24
             })
-            res.status(201).json({ token, UserID: user.user_id })
+            res.status(201).json({token, userId: user.user_id})
         }
-        res.status(400).send('Invalid Credentials')
+
+        res.status(400).json('Invalid Credentials')
+
     } catch (err) {
         console.log(err)
+    } finally {
+        await client.close()
     }
 })
 
 
+app.get('/gender', async (req, res) => {
+    const client = new MongoClient(uri)
+    const sex = req.query.sex
 
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+        const query = {gender: {$eq: sex}}
+        const foundUsers = await users.find(query).toArray()
+        res.json(foundUsers)
 
+    } finally {
+        await client.close()
+    }
+})
 
 
 
@@ -216,11 +234,7 @@ finally {
 
 
 
-
-
-
-app.get('/users-sex', async (req, res) => {
-    const sex = req.query.sex
+app.get('/users', async (req, res) => {
 
     try {
         await Client.connect()
@@ -230,6 +244,10 @@ app.get('/users-sex', async (req, res) => {
         const foundUsers = await users.find(query).toArray()
 
         res.send(foundUsers)
+
+        const returnedusers = await users.find().toArray()
+        console.log("returned user", returnedusers);
+        res.send(returnedusers)
 
     } finally {
         await Client.close()
