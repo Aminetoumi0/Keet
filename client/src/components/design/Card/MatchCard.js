@@ -23,23 +23,20 @@ const ExpandMore = styled((props) => {
   })
 }))
 
-const defaultStyle = { media: { height: 700 }, card: { maxWidth: 400, borderRadius: 6 } }
+const defaultStyle = { media: { height: 550 }, card: { width: 350, maxWidth: 500, borderRadius: 6 } }
 
-const MatchCard = ({ children, data, actions, onClick, options = {}, styles = {} }) => {
+const MatchCard = ({ children, data, actions, onClick, onSwipe, onLeftScreen = () => {}, options = {}, styles = {} }) => {
   const [expanded, setExpanded] = useState(false)
-  const onSwipe = (direction) => {
-    console.log('You swiped: ' + direction)
-  }
 
-  const onCardLeftScreen = (myIdentifier) => {
-    console.log(myIdentifier + ' left the screen')
-  }
+  const handleSwipe = (direction) => onSwipe({ ...data, direction })
+
+  const handleLeftScreen = () => onLeftScreen(data)
 
   const Swiper = (props) =>
     options?.swipable ? (
       <TinderCard
-        onSwipe={onSwipe}
-        onCardLeftScreen={() => onCardLeftScreen('fooBar')}
+        onSwipe={handleSwipe}
+        onCardLeftScreen={handleLeftScreen}
         preventSwipe={['down', 'up']}>
         {props.children}
       </TinderCard>
@@ -59,10 +56,10 @@ const MatchCard = ({ children, data, actions, onClick, options = {}, styles = {}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div" align="left">
-              {data?.title ?? 'kittento'}
+              {data?.title}
             </Typography>
             <Typography variant="body2" color="text.secondary" align="left">
-              {data?.subHeader ?? 'I like to take walks and play with my toys'}
+              {data?.subHeader}
             </Typography>
           </CardContent>
         </CardActionArea>
