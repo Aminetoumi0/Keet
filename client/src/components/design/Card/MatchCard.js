@@ -7,8 +7,6 @@ import Collapse from '@mui/material/Collapse'
 
 import { styled } from '@mui/material/styles'
 
-import LikeIcon from '@mui/icons-material/Favorite'
-import DislikeIcon from '@mui/icons-material/Clear'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 import TinderCard from 'react-tinder-card'
@@ -25,7 +23,9 @@ const ExpandMore = styled((props) => {
   })
 }))
 
-const MatchCard = ({ onClick }) => {
+const defaultStyle = { media: { height: 700 }, card: { maxWidth: 400, borderRadius: 6 } }
+
+const MatchCard = ({ children, data, actions, onClick, options = {}, styles = {} }) => {
   const [expanded, setExpanded] = useState(false)
   const onSwipe = (direction) => {
     console.log('You swiped: ' + direction)
@@ -35,50 +35,58 @@ const MatchCard = ({ onClick }) => {
     console.log(myIdentifier + ' left the screen')
   }
 
+  const Swiper = (props) =>
+    options?.swipable ? (
+      <TinderCard
+        onSwipe={onSwipe}
+        onCardLeftScreen={() => onCardLeftScreen('fooBar')}
+        preventSwipe={['down', 'up']}>
+        {props.children}
+      </TinderCard>
+    ) : (
+      <>{props.children}</>
+    )
+
   return (
-    <TinderCard
-      onSwipe={onSwipe}
-      onCardLeftScreen={() => onCardLeftScreen('fooBar')}
-      preventSwipe={['down', 'up']}>
-      <Card onClick={onClick} sx={{ maxWidth: 400, borderRadius: 6 }}>
+    <Swiper>
+      <Card onClick={onClick} sx={styles?.card ?? defaultStyle.card}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="500"
-            image="https://media.tenor.com/xTgFPUUk9EQAAAAM/cute-cats.gif"
-            alt="green iguana"
+            height={styles?.media?.height ?? defaultStyle.media.height}
+            image={data?.media}
+            alt={data?.alt}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div" align="left">
-              kittento
+              {data?.title ?? 'kittento'}
             </Typography>
             <Typography variant="body2" color="text.secondary" align="left">
-              I like to take walks and play with my toys
+              {data?.subHeader ?? 'I like to take walks and play with my toys'}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <LikeIcon />
-          </IconButton>
-          <IconButton aria-label="add to favorites">
-            <DislikeIcon />
-          </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={() => setExpanded(!expanded)}
-            aria-expanded={expanded}
-            aria-label="show more">
-            <ExpandMoreIcon />
-          </ExpandMore>
+          {actions}
+          {options?.expandable && (
+            <ExpandMore
+              expand={expanded}
+              onClick={() => setExpanded(!expanded)}
+              aria-expanded={expanded}
+              aria-label="show more">
+              <ExpandMoreIcon />
+            </ExpandMore>
+          )}
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Method:</Typography>
-          </CardContent>
-        </Collapse>
+        {options?.expandable ? (
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>{children}</CardContent>
+          </Collapse>
+        ) : (
+          <CardContent>{children}</CardContent>
+        )}
       </Card>
-    </TinderCard>
+    </Swiper>
   )
 }
 
