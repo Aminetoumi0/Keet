@@ -17,10 +17,11 @@ const Messages = ({ messages, onMessageClick }) => {
   const handleClick = (msg) => () => {
     onMessageClick(msg)
   }
+
   return messages.map((msg) => (
     <Card
       key={msg.user}
-      avatar={msg.img}
+      media={msg.img}
       title={msg.user}
       subheader={msg.lastMessage}
       onClick={handleClick(msg.user)}

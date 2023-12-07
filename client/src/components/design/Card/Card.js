@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 
-const Card = ({ Avatar, avatar, title, subheader, onClick, classes, sx }) => {
+const Card = ({ Avatar, avatar, media, title, subheader, onClick, classes, sx }) => {
 
   const handleClick = () => onClick(title)
 
@@ -14,7 +14,7 @@ const Card = ({ Avatar, avatar, title, subheader, onClick, classes, sx }) => {
       <CardHeader
         avatar={
           Avatar ?? (
-            <MuiAvatar sx={{ ...sx?.avatar }} aria-label="recipe">
+            <MuiAvatar src={media} sx={{ ...sx?.avatar }} aria-label="recipe">
               {avatar}
             </MuiAvatar>
           )
