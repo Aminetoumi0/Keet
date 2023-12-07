@@ -37,7 +37,9 @@ const MatchCard = ({ children, data, actions, onClick, onSwipe, onLeftScreen = (
       <TinderCard
         onSwipe={handleSwipe}
         onCardLeftScreen={handleLeftScreen}
-        preventSwipe={['down', 'up']}>
+        preventSwipe={['down', 'up'] }
+        swipeRequirementType="position"
+        swipeThreshold="400">
         {props.children}
       </TinderCard>
     ) : (

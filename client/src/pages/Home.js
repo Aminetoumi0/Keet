@@ -21,11 +21,11 @@ const messages = [
 const matches = [
   {
     user: 'Glen',
-    img: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaB4s5J1ujU-ePuhfRtWKWf-NNlyHqlamzsNizjBzhw0x9awEU08MZD8T2TBtD3aFqFGSyOhcq8_lP52WUCuHLidZGgFRQ=w1249-h955?format=webp'
+    img: 'https://images-ext-2.discordapp.net/external/qaBxpYqIBpJnCWcQ_QemnowDABhtW5XkFEZuNvR6h00/https/lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaDOEkK_sph-JQQBD-4FpKrIUGHo9MOVuuWUwffZKWNojB1mKsyVR0gTQky2nwv2TU74IwyDKvzo8ddSUSBEhyAlaWsy%3Dw1920-h955?format=webp'
   },
   {
     user: 'Jake',
-    img: 'https://images-ext-2.discordapp.net/external/qaBxpYqIBpJnCWcQ_QemnowDABhtW5XkFEZuNvR6h00/https/lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaDOEkK_sph-JQQBD-4FpKrIUGHo9MOVuuWUwffZKWNojB1mKsyVR0gTQky2nwv2TU74IwyDKvzo8ddSUSBEhyAlaWsy%3Dw1920-h955?format=webp'
+    img: 'https://images-ext-2.discordapp.net/external/xhF6n69zTSYIMsSpijOhQkGPDcxlyksoXIjt915xxHU/https/lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaB4s5J1ujU-ePuhfRtWKWf-NNlyHqlamzsNizjBzhw0x9awEU08MZD8T2TBtD3aFqFGSyOhcq8_lP52WUCuHLidZGgFRQ%3Dw1920-h955?format=webp'
   }
 ]
 

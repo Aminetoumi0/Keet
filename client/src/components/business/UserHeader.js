@@ -13,7 +13,7 @@ const UserHeader = ({ onClick }) => {
     <Card
       media="https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAmJkQPKlei1MpUHt6wDQhdPhKIirMKvLpRwTEdPpZ1Yab5RsB3Xd8RhKzptxEWIrHUxbYOhY_AA81Smi01QyGaN-HjRA=w1920-h955"
       sx={{ avatar: { height: 50, width: 50 } }}
-      title="aaaa"
+      title="Binks"
       classes={classes}
       onClick={onClick}
     />
