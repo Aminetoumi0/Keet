@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Nav from '../components/Nav'
+import Nav from '../components/design/Nav'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -25,7 +25,7 @@ const Onboarding = () => {
       const response = await axios.put('http://localhost:8000/user', { formData })
       const success = response.status === 200
       console.log(response)
-      if (success) navigate('/Dashboard')
+      if (success) navigate('/Home')
     } catch (err) {
       console.log(err)
     }
@@ -48,7 +48,7 @@ const Onboarding = () => {
 
         <form onSubmit={handleSubmit}>
           <section>
-            <label htmlFor="Name">Name</label>
+            <label htmlFor="name">Name</label>
             <input
               id="name"
               type="text"
@@ -107,7 +107,7 @@ const Onboarding = () => {
                 name="interest"
                 value="Male"
                 onChange={handleChange}
-                checked={formData.interest === 'Male'}
+                checked={formData.sex_interest === 'Male'}
               />
               <label htmlFor="Male-ID-interest">Male</label>
               <input
@@ -116,18 +116,18 @@ const Onboarding = () => {
                 name="interest"
                 value="Female"
                 onChange={handleChange}
-                checked={formData.interest === 'Female'}
+                checked={formData.sex_interest === 'Female'}
               />
               <label htmlFor="Female-ID-interest">Female</label>
             </div>
             <label htmlFor="about">About me</label>
             <input
-              id="about"
+              id="likes"
               type="text"
-              name="about"
+              name="likes"
               required={true}
               placeholder="i like to play"
-              value={formData.about}
+              value={formData.likes}
               onChange={handleChange}
             />
             <input type="submit" />

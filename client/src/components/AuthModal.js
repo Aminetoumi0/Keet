@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 
 const AuthModal = ({ setshowModal, IsSignUp }) => {
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
-    const [confirmPassword, setconfirmPassword] = useState(null)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setconfirmPassword] = useState("")
     const [error, setError] = useState(null)
     const [, setCookie] = useCookies('user')
 
     const navigate = useNavigate()
-  
+
 
     const handleClick = () => {
         setshowModal(false)
@@ -25,7 +25,7 @@ const AuthModal = ({ setshowModal, IsSignUp }) => {
                 return
             }
             const response = await axios.post(`http://localhost:8000/${IsSignUp ? 'signup' : 'login'}`, { email, password })
-            
+
             setCookie('AuthToken', response.data.token)
             setCookie('user_id', response.data.user_id)
 
@@ -33,14 +33,14 @@ const AuthModal = ({ setshowModal, IsSignUp }) => {
             const success = response.status === 201
 
             if (success && IsSignUp) navigate('/Onboarding')
-            if (success && !IsSignUp) navigate('/Dashboard')
+            if (success && !IsSignUp) navigate('/Home')
         }
         catch (error) {
-            console.error(error)
+            console.error("Authentication failed:", error.message);
+            setError("Authentication failed. Please check your credentials.");
         }
     }
-
-
+    
     return (
         <div className="auth-modal">
             <div className="close-icon" onClick={handleClick}>⮾</div>

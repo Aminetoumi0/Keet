@@ -10,7 +10,7 @@ const Card = ({ Avatar, avatar, title, subheader, onClick, classes, sx }) => {
   const handleClick = () => onClick(title)
 
   return (
-    <MUICard onClick={onClick ? handleClick : null} sx={[{ cursor: onClick ? 'pointer': '' }]}>
+    <MUICard onClick={onClick ? handleClick : null} sx={[{ cursor: onClick ? 'pointer' : '' }]}>
       <CardHeader
         avatar={
           Avatar ?? (
