@@ -6,13 +6,13 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Messaging from './Messaging'
 
 const messages = [
-  { user: 'cat 1', lastMessage: 'helloKitty', img: 'C1' },
-  { user: 'cat 2', lastMessage: 'lolloKitty', img: 'C2' }
+  { user: 'Glen', lastMessage: 'hellooo', img: 'https://drive.google.com/file/d/1wngUDrWezjjR6zCcQEPewr8crkwlbgSQ/view?usp=drive_link' },
+  { user: 'Jake', lastMessage: 'cute kitty', img: 'https://drive.google.com/file/d/17cKerHHPv88cw8LFi3GdJu74ANeF77jI/view?usp=drive_link' }
 ]
 
 const matches = [
-  { user: 'cat 1', img: 'C1' },
-  { user: 'cat 2', img: 'C2' }
+  { user: 'Glen', img: 'https://drive.google.com/file/d/1wngUDrWezjjR6zCcQEPewr8crkwlbgSQ/view?usp=drive_link' },
+  { user: 'Jake', img: 'https://drive.google.com/file/d/17cKerHHPv88cw8LFi3GdJu74ANeF77jI/view?usp=drive_link' }
 ]
 
 const Home = () => {

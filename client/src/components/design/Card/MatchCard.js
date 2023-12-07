@@ -15,7 +15,7 @@ import TinderCard from 'react-tinder-card'
 import { useState } from 'react'
 
 const ExpandMore = styled((props) => {
-  const { expand, ...other } = props
+  const {  ...other } = props
   return <IconButton {...other} />
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
@@ -53,8 +53,7 @@ const MatchCard = ({ onClick }) => {
               kittento
             </Typography>
             <Typography variant="body2" color="text.secondary" align="left">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
+              I like to take walks and play with my toys
             </Typography>
           </CardContent>
         </CardActionArea>
