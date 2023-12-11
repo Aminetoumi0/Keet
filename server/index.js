@@ -1,5 +1,5 @@
+// Importing necessary dependencies and components from Node.js modules and third-party libraries
 const PORT = 8000
-
 const express = require('express')
 const { MongoClient } = require('mongodb')
 const { v4: uuidv4 } = require('uuid')
@@ -8,24 +8,22 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 
+// MongoDB connection URI
 const uri = 'mongodb+srv://toumibusiness0:mypassword@cluster0.twesmhn.mongodb.net/?retryWrites=true&w=majority'
-
-
-
+// Create an Express application
 const app = express()
-
+// Middleware for parsing JSON and handling CORS
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 app.get(express.json())
-
+// MongoDB Client instance
 const Client = new MongoClient(uri)
-
-
+// Default route to check if the server is running
 app.get('/', (req, res) => {
     res.json('hello to my app')
 })
-
+// Route for user registration (signup)
 app.post('/signup', async (req, res) => {
     console.log("request.body", req.body)
     const { email, password } = req.body
@@ -64,7 +62,7 @@ app.post('/signup', async (req, res) => {
 
 
 })
-
+// Route for user login
 app.post('/login', async (req, res) => {
     const client = new MongoClient(uri)
     const {email, password} = req.body
@@ -94,7 +92,7 @@ app.post('/login', async (req, res) => {
     }
 })
 
-
+// Route for fetching users based on gender
 app.get('/gender', async (req, res) => {
     const client = new MongoClient(uri)
     const sex = req.query.sex
@@ -111,10 +109,7 @@ app.get('/gender', async (req, res) => {
         await client.close()
     }
 })
-
-
-
-
+// Route for updating user information
 app.put('/user', async (req, res) => {
     const formData = req.body.formData
     try {
@@ -141,8 +136,7 @@ app.put('/user', async (req, res) => {
         await Client.close()
     }
 })
-
-
+// Route for fetching user information
 app.get('/user', async (req, res) => {
     const user_id = req.query.user_id
 
@@ -168,18 +162,7 @@ app.get('/user', async (req, res) => {
         await Client.close()
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
+// Route for fetching all users
 app.get('/users', async (req, res) => {
 
     try {
@@ -197,16 +180,5 @@ app.get('/users', async (req, res) => {
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// Start the server
 app.listen(PORT, () => console.log('Server running on PORT ' + PORT))
