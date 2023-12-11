@@ -7,6 +7,7 @@ import Onboarding from './pages/Onboarding'
 
 const App = () => {
   return (
+    /* showing the routes */
     <Providers>
       <BrowserRouter>
         <Routes>
