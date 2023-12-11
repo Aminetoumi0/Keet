@@ -6,6 +6,7 @@ const Nav = ({ minimal, setshowModal, showModal, setIsSignUp }) => {
   }
   const authToken = false
   return (
+    /* making the navigator bar */
     <nav>
       <div className="logo-container">
         <img className="logo" src={Keet_logo} alt="logo" />
