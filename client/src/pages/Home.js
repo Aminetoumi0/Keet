@@ -1,10 +1,11 @@
+// Importing necessary dependencies and components from React and custom modules
 import { useState } from 'react'
 import Layout from '../components/layout'
 import Messages from '../components/business/Messages'
 import Matches from '../components/business/Matches'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Messaging from './Messaging'
-
+// Sample data for messages, matches, and users
 const messages = [
   {
     user: 'Glen',
@@ -51,16 +52,17 @@ const users = [
     media: 'https://i.imgur.com/rtLmWHZ.jpeg'
   }
 ]
-
+// Functional component 'Home'
 const Home = () => {
+  // Hook to manage navigation in the application
   const navigate = useNavigate()
-
+  // State to track the active tab
   const [tab, handleChangeTab] = useState(0)
-
+  // Handler for navigating to a specific route
   const handleNavigate = (route) => () => {
     navigate(`/home/${route}`)
   }
-
+  // Array of tabs, each containing a Messages component
   const tabs = [
     <Messages key="matches" messages={matches} onMessageClick={handleNavigate('messaging')} />,
     <Messages key="messages" messages={messages} onMessageClick={handleNavigate('messaging')} />
