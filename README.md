@@ -40,8 +40,10 @@ The frontend is built with React.
 
 Contributing
 
-I made this project with the guidance and help of peers and friends
+I made this project with the guidance and help of peers and friends!
 
 Authors:
 
-Amine Toumi (Toumibusiness0@gmail.com)
+Amine Toumi (Toumibusiness0@gmail.com) (https://www.linkedin.com/in/amine-toumi-charkaoui-a8b8951ba/)
+
+[signup](https://github.com/Aminetoumi0/Keet/assets/125613112/7fadf456-bf8a-4cfc-8d67-7c81233e0c83)
