@@ -1,3 +1,5 @@
+// Importing necessary components and icons from Material-UI
+
 import { Box } from '@mui/system'
 import { IconButton, Typography } from '@mui/material'
 
@@ -8,22 +10,26 @@ import DislikeIcon from '@mui/icons-material/Clear'
 import { useEffect, useState } from 'react'
 import Maybe from '../layout/Maybe'
 
+// Functional component 'Matches' that receives props
+
 const Matches = ({ onMatchClick = () => {}, onAttemptMatch = () => {}, users }) => {
+  // State to manage users for matching
   const [_users, setUsers] = useState([])
+  // Handler for clicking the main card
   const handleClick = () => {
     onMatchClick(_users[0])
   }
-
+  // Handler for clicking the main card
   useEffect(() => {
     setUsers(users)
   }, [users])
-
+  // Handler for attempting a match
   const attemptMatching = () => {
     const [potential, ...rest] = _users
     onAttemptMatch(potential)
     setUsers(rest)
   }
-
+  // Array of action buttons (like and dislike) for the card
   const actions = [
     <IconButton onClick={attemptMatching} key="dislike" aria-label="add to favorites">
       <DislikeIcon />
