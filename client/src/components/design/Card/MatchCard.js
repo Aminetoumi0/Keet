@@ -26,6 +26,7 @@ const ExpandMore = styled((props) => {
 const defaultStyle = { media: { height: 550 }, card: { width: 350, maxWidth: 500, borderRadius: 6 } }
 
 const MatchCard = ({ children, data, actions, onClick, onSwipe, onLeftScreen = () => {}, options = {}, styles = {} }) => {
+  /* handling the swiping card mechanism */
   const [expanded, setExpanded] = useState(false)
 
   const handleSwipe = (direction) => onSwipe({ ...data, direction })
