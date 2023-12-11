@@ -6,6 +6,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 
 const Card = ({ Avatar, avatar, media, title, subheader, onClick, classes, sx }) => {
+  /* using the mui card to display the match */
 
   const handleClick = () => onClick(title)
 
