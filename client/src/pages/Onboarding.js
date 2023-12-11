@@ -1,10 +1,13 @@
+// Importing necessary dependencies and components from React, custom modules, and third-party libraries
 import { useState } from 'react'
 import Nav from '../components/design/Nav'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+// Functional component 'Onboarding'
 const Onboarding = () => {
+  // State to manage form data and user cookies
   const [Cookies] = useCookies('user')
   const [formData, setFromData] = useState({
     user_id: Cookies.user_id,
@@ -17,23 +20,27 @@ const Onboarding = () => {
     about: '',
     matches: []
   })
-
+  // Hook for navigating between pages
   let navigate = useNavigate()
+  // Handler for form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      // Sending a PUT request to update user data
       const response = await axios.put('http://localhost:8000/user', { formData })
       const success = response.status === 200
       console.log(response)
+      // If the request is successful, navigate to the Home page
       if (success) navigate('/Home')
     } catch (err) {
       console.log(err)
     }
   }
+  // Handler for input changes
   const handleChange = (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     const name = e.target.name
-
+    // Updating form data based on input changes
     setFromData((prevState) => ({
       ...prevState,
       [name]: value
