@@ -18,6 +18,7 @@ const AuthModal = ({ setshowModal, IsSignUp }) => {
     }
 
     const handleSubmit = async (e) => {
+        /* putting a condition on the account submit */
         e.preventDefault()
         try {
             if (IsSignUp && (password !== confirmPassword)) {
@@ -42,6 +43,7 @@ const AuthModal = ({ setshowModal, IsSignUp }) => {
     }
     
     return (
+        /* section of creating account / login */
         <div className="auth-modal">
             <div className="close-icon" onClick={handleClick}>⮾</div>
             <h2>{IsSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
