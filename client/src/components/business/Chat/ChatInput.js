@@ -1,13 +1,34 @@
 import { useState } from 'react'
+import { TextField } from '@mui/material';
+const ChatInput = ({ addMessage }) => {
+  const [inputValue, setInputValue] = useState('');
 
-const ChatInput = () => {
-  const [textArea, settextArea] = useState(null)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue.trim() !== '') {
+      addMessage(inputValue);
+      setInputValue('');
+    }
+  };
+
   return (
-    <div className="chat-input">
-      <textarea value={textArea} onChange={(e) => settextArea(e.target.value)} />
-      <button className="secondary-button">Submit</button>
-    </div>
-  )
+    <form onSubmit={handleSubmit} className="chat-input">
+      <TextField
+          id="text"
+          label=""
+          multiline
+          maxRows={4}
+          variant="filled"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Type a message..."
+        className="input-field"
+      />
+      <button type="submit" className="send-button">
+        Send
+      </button>
+    </form>
+  );
 }
 
 export default ChatInput

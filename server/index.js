@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 
 const uri = 'mongodb+srv://toumibusiness0:mypassword@cluster0.twesmhn.mongodb.net/?retryWrites=true&w=majority'
 
-
+const dbname = 'app-data'
 
 const app = express()
 
@@ -33,8 +33,8 @@ app.post('/signup', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     try {
-        await Client.connect()
-        const database = Client.db('app-data')
+        await Client.connect(dbname)
+        const database = Client.db()
         const users = database.collection('users')
 
         const existingUser = await users.findOne({ email })
@@ -69,7 +69,7 @@ app.post('/login', async (req, res) => {
 
     try {
         await client.connect()
-        const database = client.db('app-data')
+        const database = client.db(dbname)
         const users = database.collection('users')
 
         const user = await users.findOne({email})
@@ -99,7 +99,7 @@ app.get('/gender', async (req, res) => {
 
     try {
         await client.connect()
-        const database = client.db('app-data')
+        const database = client.db(dbname)
         const users = database.collection('users')
         const query = {gender: {$eq: sex}}
         const foundUsers = await users.find(query).toArray()

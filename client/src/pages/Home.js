@@ -9,23 +9,23 @@ const messages = [
   {
     user: 'Glen',
     lastMessage: 'hellooo',
-    img: 'https://images-ext-2.discordapp.net/external/qaBxpYqIBpJnCWcQ_QemnowDABhtW5XkFEZuNvR6h00/https/lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaDOEkK_sph-JQQBD-4FpKrIUGHo9MOVuuWUwffZKWNojB1mKsyVR0gTQky2nwv2TU74IwyDKvzo8ddSUSBEhyAlaWsy%3Dw1920-h955?format=webp'
+    img: 'https://i.imgur.com/aMPNEAw.jpg'
   },
   {
     user: 'Jake',
     lastMessage: 'cute kitty',
-    img: 'https://images-ext-2.discordapp.net/external/xhF6n69zTSYIMsSpijOhQkGPDcxlyksoXIjt915xxHU/https/lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaB4s5J1ujU-ePuhfRtWKWf-NNlyHqlamzsNizjBzhw0x9awEU08MZD8T2TBtD3aFqFGSyOhcq8_lP52WUCuHLidZGgFRQ%3Dw1920-h955?format=webp'
+    img: 'https://i.imgur.com/FnmRIGi.jpeg'
   }
 ]
 
 const matches = [
   {
     user: 'Glen',
-    img: 'https://images-ext-2.discordapp.net/external/qaBxpYqIBpJnCWcQ_QemnowDABhtW5XkFEZuNvR6h00/https/lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaDOEkK_sph-JQQBD-4FpKrIUGHo9MOVuuWUwffZKWNojB1mKsyVR0gTQky2nwv2TU74IwyDKvzo8ddSUSBEhyAlaWsy%3Dw1920-h955?format=webp'
+    img: 'https://i.imgur.com/aMPNEAw.jpg'
   },
   {
     user: 'Jake',
-    img: 'https://images-ext-2.discordapp.net/external/xhF6n69zTSYIMsSpijOhQkGPDcxlyksoXIjt915xxHU/https/lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaB4s5J1ujU-ePuhfRtWKWf-NNlyHqlamzsNizjBzhw0x9awEU08MZD8T2TBtD3aFqFGSyOhcq8_lP52WUCuHLidZGgFRQ%3Dw1920-h955?format=webp'
+    img: 'https://i.imgur.com/FnmRIGi.jpeg'
   }
 ]
 
@@ -62,18 +62,21 @@ const Home = () => {
   }
 
   const tabs = [
-    <Messages key="matches" messages={matches} onMessageClick={handleNavigate('messaging')} />,
-    <Messages key="messages" messages={messages} onMessageClick={handleNavigate('messaging')} />
+    <Messages key="matches" messages={matches} onMessageClick={handleNavigate('messages')} />,
+    <Messages key="messages" messages={messages} onMessageClick={handleNavigate('messages')} />
   ]
-
+  console.log(location.pathname)
   return (
     <Layout onChangeTab={handleChangeTab} current={tab} tabs={tabs}>
-      <Matches users={users} />
+      {/* Conditionally render Matches only if the route path is not "messages" */}
+      
+      
       <Routes>
-        <Route path="messaging" element={<Messaging />} />
+        <Route path='/' element={<Matches users={users} />} exact/>
+        <Route path="messages" element={<Messaging />} />
       </Routes>
     </Layout>
-  )
+  );
 }
 
 export default Home

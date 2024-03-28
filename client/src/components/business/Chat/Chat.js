@@ -1,5 +1,9 @@
+import ChatDisplay from "./ChatDisplay"
+
 const Chat = () => {
-  return <></>
+  return <>
+  <ChatDisplay />
+  </>
 }
 
 export default Chat
