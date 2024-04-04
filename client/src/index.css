@@ -6,13 +6,17 @@ html, body {
   padding: 0;
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  background: url(./images/Keet_wallpaper.jpg);
+  background: url(./images/Catwallpaper.webp);
+background-position: flex; 
 }
-
+.bar{
+  background-color: #ffffff;
+}
 h2 {
   font-style: italic;
   margin: 0; /* Reset default margin */
 }
+
 
 /* Typography */
 .primary-title {
@@ -58,16 +62,28 @@ nav .logo-container {
 }
 
 nav .nav-button {
-  font-size: 20px;
+  font-size: 50px;
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
   margin: 10px;
   transition: background-color 0.3s ease;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 162, 0);
+  border: 1px solid rgba(104, 85, 224, 1);
 }
-
+nav .Title{
+  margin-left: 0;
+  font-size: 50px ;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav .Sub{
+  margin-left: 0;
+  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 nav .nav-button:disabled {
-  background-color: rgb(189, 180, 180);
+  background-color: rgb(106, 244, 138);
 }
 
 /* Home Page */
@@ -75,7 +91,6 @@ nav .nav-button:disabled {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background: url(./images/Keet_wallpaper.jpg);
 }
 
 .home {
@@ -231,7 +246,6 @@ nav .nav-button:disabled {
   height: 650px;
   box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.30);
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-size: cover;
   background-position: center;
@@ -331,34 +345,91 @@ button:hover {
 }
 
 /*-------- Chat Display --------*/
-.chat-display,
-.matches-display {
-  padding: flex;
-  height: 500px;
+.chat-display{
   width: 500px;
-  overflow-y: auto;
-  margin-top: auto;
-}
-.chat-display .chat-window {
-  flex: 1;
-  overflow-y: scroll;
-  padding: 100px 100px;
-}
-.chat-window {
-  padding: flex;
-  background-color: #ffffff;
-  overflow-y: scroll;
-  text-align: right;
-}
-.text-message {
-  background-color: #1500ff;
-  color:#ffffff;
-  padding: flex;
-  margin: 5px;
-  margin-bottom: 5px;
+  height: 600px;
+  border: 1px solid #ccc;
   border-radius: 10px;
-  
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
 }
+.chatter {
+  background-color: #dbbaff;
+  height: 10%;
+  border: 1px solid #d2c5c5;
+  flex-direction: column;
+}
+
+.Avat {
+  margin-left: -380px;
+  display: inline-block;
+  vertical-align: middle;
+  /* Additional styling for avatar div if needed */
+}
+
+.glen {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(62, 58, 58);
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  /* Adjust margin or padding as needed */
+  margin-left: 10px; /* Adjust the margin to create space between avatar and text */
+}
+.messages {
+  background-image: url(../src/images/Keet_wallpaper.jpg);
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.message {
+  float:inline-end;
+  background-color: #007bff;
+  color: white;
+  max-width:max-content;
+  margin-bottom: 10px;
+  margin:flex;
+  padding: 8px;
+  border-radius: 10px;
+  align-self: flex-end;
+}
+
+.message:last-child {
+  margin-bottom: 0;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.input-container input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-container button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.input-container button:hover {
+  background-color: #0056b3;
+}
+
 
 
 
@@ -370,4 +441,10 @@ button:hover {
 }
 .input-field { 
   background-color: #FFD166;
+}
+
+
+
+.popover {
+  
 }
