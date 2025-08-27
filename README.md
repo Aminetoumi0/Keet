@@ -7,8 +7,6 @@ Features
 Folder Structure
 Backend (Node.js + Express + MongoDB)
 Frontend (React)
-Contributing
-Authors
 
 Overview
 
